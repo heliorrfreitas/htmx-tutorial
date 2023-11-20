@@ -32,6 +32,12 @@ def set_task_status(task_id, done):
     conn.commit()
     return {"id": task_id, "done": done}
 
+def set_task_title(task_id, title):
+    """Set new title for a task, and return it partially"""
+
+    c.execute("UPDATE todos SET title=? WHERE id=?", (title, task_id))
+    conn.commit()
+    return {"id": task_id, "title": title}
 
 def delete_todo(task_id):
     """Delete a task completely"""
